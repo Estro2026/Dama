@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { useRouter } from "next/navigation";
 
 interface LeadFormProps {
   dark?: boolean;
@@ -9,12 +8,14 @@ interface LeadFormProps {
   source?: string;
 }
 
+// TODO: sostituire FORMSPREE_ID con l'ID reale da https://formspree.io
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/FORMSPREE_ID";
+
 export default function LeadForm({
   dark = false,
   ctaLabel = "Ricevi una proposta personalizzata",
   source = "hero",
 }: LeadFormProps) {
-  const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -25,24 +26,16 @@ export default function LeadForm({
 
     const form = e.currentTarget;
     const data = new FormData(form);
-    const body = {
-      nome: data.get("nome"),
-      azienda: data.get("azienda"),
-      email: data.get("email"),
-      telefono: data.get("telefono"),
-      tipoEvento: data.get("tipoEvento"),
-      messaggio: data.get("messaggio"),
-      source,
-    };
+    data.append("_source", source);
 
     try {
-      const res = await fetch("/api/lead", {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+        body: data,
+        headers: { Accept: "application/json" },
       });
-      if (!res.ok) throw new Error("Errore invio");
-      router.push("/grazie");
+      if (!res.ok) throw new Error();
+      window.location.href = `${window.location.origin}/dama/grazie/`;
     } catch {
       setError("Si è verificato un errore. Riprova o contattaci direttamente.");
       setSubmitting(false);
@@ -68,7 +61,6 @@ export default function LeadForm({
       aria-label="Modulo richiesta preventivo"
       className="space-y-4"
     >
-      {/* Row: Nome + Azienda */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor={`nome-${source}`} className={labelClass}>
@@ -100,7 +92,6 @@ export default function LeadForm({
         </div>
       </div>
 
-      {/* Row: Email + Telefono */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor={`email-${source}`} className={labelClass}>
@@ -132,7 +123,6 @@ export default function LeadForm({
         </div>
       </div>
 
-      {/* Tipo Evento */}
       <div>
         <label htmlFor={`tipoEvento-${source}`} className={labelClass}>
           Tipo di evento
@@ -152,7 +142,6 @@ export default function LeadForm({
         </select>
       </div>
 
-      {/* Messaggio */}
       <div>
         <label htmlFor={`messaggio-${source}`} className={labelClass}>
           Messaggio
@@ -166,7 +155,6 @@ export default function LeadForm({
         />
       </div>
 
-      {/* Privacy */}
       <div className="flex items-start gap-3">
         <input
           id={`privacy-${source}`}
@@ -196,16 +184,15 @@ export default function LeadForm({
         </p>
       )}
 
-      {/* CTA */}
       <button
         type="submit"
         disabled={submitting}
         className="w-full py-4 px-6 bg-bordeaux text-ivory text-sm tracking-widest uppercase font-ui font-semibold transition-all duration-300 hover:bg-bordeaux-dark disabled:opacity-60 disabled:cursor-not-allowed"
+        style={{ backgroundColor: "#8C1822" }}
       >
         {submitting ? "Invio in corso…" : ctaLabel}
       </button>
 
-      {/* Trust strip */}
       <ul
         aria-label="Garanzie"
         className={`grid grid-cols-2 gap-x-4 gap-y-1 pt-2 ${
