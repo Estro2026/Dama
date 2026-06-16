@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bordeaux: #8C1822;
+  --color-bordeaux-dark: #47090F;
+  --color-ivory: #F5F3EC;
+  --color-taupe: #AFA899;
+  --color-ink: #0a0a0a;
+
+  --font-display: var(--font-bodoni), 'Bodoni Moda', Georgia, serif;
+  --font-ui: var(--font-quicksand), 'Quicksand', system-ui, sans-serif;
+  --font-body: var(--font-jost), 'Jost', system-ui, sans-serif;
+}
+
+/* ─── Reset & Base ─── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #F5F3EC;
+  color: #0a0a0a;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* ─── Typography ─── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* ─── Headings scale ─── */
+h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); }
+h2 { font-size: clamp(1.9rem, 3.5vw, 3rem); }
+h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); }
+
+/* ─── Focus visible ─── */
+:focus-visible {
+  outline: 2px solid #8C1822;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─── Scrollbar (subtle) ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F5F3EC; }
+::-webkit-scrollbar-thumb { background: #AFA899; border-radius: 3px; }
+
+/* ─── Selection ─── */
+::selection { background: #8C1822; color: #F5F3EC; }
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes lineExpand {
+  from { width: 0; }
+  to   { width: 3rem; }
+}
+@keyframes numberCount {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up { animation: fadeUp 0.7s ease forwards; }
+.animate-fade-in { animation: fadeIn 0.8s ease forwards; }
+.animate-scale-in { animation: scaleIn 0.6s ease forwards; }
+
+/* ─── Utility: divider line ─── */
+.dama-rule {
+  display: block;
+  width: 3rem;
+  height: 1px;
+  background: #8C1822;
+}
+
+/* ─── Custom scrolling gallery ─── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ─── Accordion ─── */
+details summary::-webkit-details-marker { display: none; }
+details > summary { list-style: none; cursor: pointer; }
+
+/* ─── Form focus ring ─── */
+.field-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(175,168,153,0.5);
+  color: inherit;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+}
+.field-input:focus {
+  outline: none;
+  border-color: #8C1822;
+}
+.field-input::placeholder { color: rgba(10,10,10,0.4); }
+
+/* ─── On dark backgrounds ─── */
+.on-dark .field-input {
+  border-color: rgba(245,243,236,0.3);
+  color: #F5F3EC;
+}
+.on-dark .field-input::placeholder { color: rgba(245,243,236,0.45); }
+.on-dark .field-input:focus { border-color: #F5F3EC; }
