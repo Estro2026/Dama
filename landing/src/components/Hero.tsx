@@ -37,7 +37,7 @@ export default function Hero() {
     <section
       id="hero"
       aria-label="Dama24 Banqueting – Catering aziendale Milano"
-      style={{ display: "flex", minHeight: "100svh" }}
+      style={{ display: "flex", minHeight: "100svh", paddingTop: "4.5rem" }}
     >
       {/* ── VIDEO (sinistra) ── */}
       <div
