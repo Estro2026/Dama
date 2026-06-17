@@ -1,62 +1,62 @@
-/* Placeholder client logos — to be replaced with real logo files when provided */
-const placeholderClients = [
-  "Logo Cliente 01",
-  "Logo Cliente 02",
-  "Logo Cliente 03",
-  "Logo Cliente 04",
-  "Logo Cliente 05",
-  "Logo Cliente 06",
-];
+/* Client logos – placeholder grid to be replaced with real logo files */
+const placeholders = Array.from({ length: 8 }, (_, i) => `Cliente ${String(i + 1).padStart(2, "0")}`);
 
 export default function SocialProof() {
   return (
     <section
       id="clienti"
       aria-labelledby="clienti-heading"
-      className="py-16 lg:py-20 bg-ivory border-t border-taupe/20"
-      style={{ background: "#F5F3EC", borderColor: "rgba(175,168,153,0.2)" }}
+      className="py-16 lg:py-20"
+      style={{
+        background: "#F5F3EC",
+        borderTop: "1px solid rgba(175,168,153,0.2)",
+        borderBottom: "1px solid rgba(175,168,153,0.2)",
+      }}
     >
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <p className="text-bordeaux text-xs tracking-[0.25em] uppercase font-ui mb-3"
-            style={{ color: "#8C1822" }}>
-            Fiducia consolidata
-          </p>
-          <h3
-            id="clienti-heading"
-            className="font-display text-2xl"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Le aziende che ci hanno scelto
-          </h3>
-        </div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
-        {/* Logo grid placeholder */}
-        <div
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6"
-          role="list"
-          aria-label="Loghi clienti – placeholder da sostituire con loghi reali"
-        >
-          {placeholderClients.map((client, i) => (
-            <div
-              key={i}
-              role="listitem"
-              className="aspect-[3/1.5] flex items-center justify-center border border-taupe/30 bg-white/40"
-              title={`Placeholder: ${client}`}
-              style={{ borderColor: "rgba(175,168,153,0.3)" }}
-              aria-label={`Placeholder logo cliente ${i + 1} – da sostituire`}
+        <div className="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-16">
+          {/* Label */}
+          <div className="flex-shrink-0" data-reveal>
+            <p className="overline mb-2">Fiducia consolidata</p>
+            <h3
+              id="clienti-heading"
+              className="font-display text-xl lg:text-2xl"
+              style={{ fontFamily: "var(--font-display)" }}
             >
-              <span className="text-taupe/50 text-xs font-ui tracking-wide text-center px-2">
-                {client}
-              </span>
-            </div>
-          ))}
+              Le aziende che ci hanno scelto
+            </h3>
+          </div>
+
+          {/* Divider */}
+          <div className="hidden lg:block w-px self-stretch" style={{ background: "rgba(175,168,153,0.3)" }} aria-hidden />
+
+          {/* Logo grid */}
+          <div
+            className="grid grid-cols-4 lg:grid-cols-8 gap-3 flex-1"
+            role="list"
+            aria-label="Loghi clienti – da sostituire con loghi reali"
+            data-reveal data-delay="2"
+          >
+            {placeholders.map((name, i) => (
+              <div
+                key={i}
+                role="listitem"
+                className="aspect-[2/1] flex items-center justify-center border"
+                style={{ borderColor: "rgba(175,168,153,0.25)", background: "rgba(255,255,255,0.4)" }}
+                title={`Placeholder logo – ${name}`}
+                aria-label={`Placeholder logo cliente ${i + 1} – da sostituire`}
+              >
+                <span className="text-taupe/40 text-[0.55rem] font-ui uppercase tracking-wide text-center px-1">
+                  {name}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <p className="text-center mt-8 text-xs text-taupe font-body italic"
-          style={{ color: "#AFA899" }}>
-          * Placeholder — Inserire i loghi clienti reali una volta forniti
+        <p className="mt-6 text-[0.65rem] text-taupe/60 font-body italic" style={{ color: "#AFA899" }}>
+          * Placeholder — sostituire con i loghi clienti reali una volta forniti
         </p>
       </div>
     </section>

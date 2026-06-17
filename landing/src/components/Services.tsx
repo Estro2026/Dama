@@ -2,40 +2,40 @@ import Image from "next/image";
 
 const services = [
   {
-    slug: "catering-aziendale",
     title: "Catering Aziendale",
     category: "Convention · Inaugurazioni · Meeting",
     description:
-      "Coffee break, lunch aziendali, inaugurazioni ed eventi corporate. Ogni dettaglio curato per rappresentare al meglio la tua azienda.",
+      "Coffee break, lunch aziendali, inaugurazioni ed eventi corporate. Ogni dettaglio progettato per rappresentare al meglio la tua azienda: dalla mise en place all'allestimento.",
     image: "/immagini/catering.webp",
-    imageAlt: "Allestimento catering aziendale Dama24",
+    imageAlt: "Allestimento catering aziendale Dama24 – mise en place per evento corporate",
+    wide: true,
   },
   {
-    slug: "banqueting",
     title: "Banqueting",
     category: "Buffet · Placée · A passaggio",
     description:
-      "Buffet, servizio placée, servizio a passaggio e formule completamente personalizzate. Il rituale del cibo come esperienza sensoriale.",
+      "Buffet, servizio placée, servizio a passaggio e formule completamente personalizzate. Il rituale del cibo come esperienza sensoriale e culturale.",
     image: "/immagini/catering2.webp",
-    imageAlt: "Banqueting su misura Dama24",
+    imageAlt: "Banqueting su misura Dama24 – servizio elegante per eventi di alta gamma",
+    wide: false,
   },
   {
-    slug: "bar-catering",
-    title: "Bar Catering",
-    category: "Open Bar · Cocktail · Mixology",
+    title: "Bar Catering & Mixology",
+    category: "Open Bar · Cocktail · Bartender",
     description:
-      "Open bar, cocktail personalizzati e bartender professionisti. L'arte della mixology al servizio del tuo evento.",
+      "Open bar, cocktail personalizzati e bartender professionisti. L'arte della mixology al servizio di ogni evento aziendale, dalla convention alla cena di gala.",
     image: "/immagini/catering3.webp",
-    imageAlt: "Bar catering e mixology eventi Dama24",
+    imageAlt: "Bar catering e mixology per eventi aziendali Dama24 Milano",
+    wide: false,
   },
   {
-    slug: "allestimenti",
     title: "Allestimenti & Intrattenimento",
-    category: "Arredi · Musica · Foto & Video",
+    category: "Arredi · Musica live · Foto & Video",
     description:
-      "Arredi, decorazioni, musica live, DJ set, foto e video per eventi aziendali. Un'unica regia per ogni aspetto del tuo evento.",
+      "Arredi, decorazioni, musica live, DJ set, foto e video per eventi aziendali. Un'unica regia estetica che orchestra ogni componente del tuo evento.",
     image: "/immagini/catering.webp",
-    imageAlt: "Allestimenti eventi aziendali Dama24",
+    imageAlt: "Allestimenti per eventi aziendali Dama24 – arredi e decorazioni su misura",
+    wide: true,
   },
 ];
 
@@ -52,84 +52,103 @@ export default function Services() {
     <section
       id="servizi"
       aria-labelledby="servizi-heading"
-      className="py-20 lg:py-28 bg-ivory"
+      className="py-24 lg:py-32"
       style={{ background: "#F5F3EC" }}
     >
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
-        <div className="max-w-2xl mb-16">
-          <p className="text-bordeaux text-xs tracking-[0.25em] uppercase font-ui mb-4"
-            style={{ color: "#8C1822" }}>
-            Servizi
-          </p>
-          <h2
-            id="servizi-heading"
-            className="font-display"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Servizi di catering aziendale per ogni tipo di evento
-          </h2>
-          <span className="dama-rule mt-6 mb-6 block" aria-hidden />
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
-          {/* Event types tags */}
-          <div className="flex flex-wrap gap-2 mt-4" role="list" aria-label="Tipologie di eventi">
-            {eventTypes.map((et) => (
-              <span
-                key={et}
-                role="listitem"
-                className="text-xs tracking-wide border border-taupe/60 px-3 py-1 text-ink/60 font-ui"
-                style={{ borderColor: "#AFA899" }}
-              >
-                {et}
-              </span>
-            ))}
+        {/* ── Header ── */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16 lg:mb-20">
+          <div data-reveal>
+            <p className="overline mb-5">Servizi</p>
+            <h2
+              id="servizi-heading"
+              className="font-display max-w-xl"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Servizi di catering aziendale per ogni tipo di evento
+            </h2>
+            <span className="dama-line mt-7 block" aria-hidden />
+          </div>
+
+          <div data-reveal="right" className="max-w-xs">
+            <p className="text-ink/55 text-sm leading-relaxed font-body mb-5">
+              Cinque tipologie di eventi, un unico interlocutore. Ogni progetto
+              nasce su misura.
+            </p>
+            <ul className="flex flex-wrap gap-2" role="list" aria-label="Tipologie di eventi gestite">
+              {eventTypes.map((et) => (
+                <li key={et}>
+                  <span
+                    className="text-[0.62rem] tracking-wide border border-taupe/50 px-3 py-1 text-ink/55 font-ui inline-block"
+                    style={{ borderColor: "rgba(175,168,153,0.5)" }}
+                  >
+                    {et}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        {/* Services grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {services.map((service, i) => (
-            <article
-              key={service.slug}
-              className="group"
-            >
-              <div className="overflow-hidden aspect-[4/3] mb-5">
-                <Image
-                  src={service.image}
-                  alt={service.imageAlt}
-                  width={600}
-                  height={450}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
-                  loading={i < 2 ? "eager" : "lazy"}
-                />
-              </div>
-              <p className="text-bordeaux text-xs tracking-[0.2em] uppercase font-ui mb-2"
-                style={{ color: "#8C1822" }}>
-                {service.category}
-              </p>
-              <h3
-                className="font-display text-xl mb-3"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {service.title}
-              </h3>
-              <p className="text-ink/65 text-sm leading-relaxed font-body">
-                {service.description}
-              </p>
-            </article>
+        {/* ── Services grid ── */}
+        {/* Row 1: wide left + narrow right */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-4 mb-4">
+          {services.slice(0, 2).map((s, i) => (
+            <ServiceCard key={s.title} service={s} index={i} />
+          ))}
+        </div>
+        {/* Row 2: narrow left + wide right */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-4">
+          {services.slice(2, 4).map((s, i) => (
+            <ServiceCard key={s.title} service={s} index={i + 2} />
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-14 text-center">
-          <a
-            href="#contatto"
-            className="inline-block px-10 py-4 border border-ink/30 text-sm tracking-widest uppercase font-ui transition-all duration-300 hover:bg-ink hover:text-ivory hover:border-ink"
-          >
+        {/* ── CTA ── */}
+        <div className="mt-16 text-center" data-reveal>
+          <a href="#contatto" className="btn-outline-dark">
             Parla con un nostro consulente
           </a>
         </div>
       </div>
     </section>
+  );
+}
+
+function ServiceCard({
+  service,
+  index,
+}: {
+  service: (typeof services)[0];
+  index: number;
+}) {
+  return (
+    <article
+      className="group"
+      data-reveal
+      data-delay={String((index % 2) + 1)}
+    >
+      <div className="img-zoom aspect-[4/3] lg:aspect-[3/2] mb-5">
+        <Image
+          src={service.image}
+          alt={service.imageAlt}
+          width={800}
+          height={533}
+          className="w-full h-full object-cover"
+          loading={index < 2 ? "eager" : "lazy"}
+        />
+      </div>
+      <p className="overline mb-2 text-[0.6rem]">{service.category}</p>
+      <h3
+        className="font-display mb-3"
+        style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.3rem, 2vw, 1.7rem)" }}
+      >
+        {service.title}
+      </h3>
+      <p className="text-ink/60 text-sm leading-relaxed font-body max-w-md">
+        {service.description}
+      </p>
+    </article>
   );
 }
