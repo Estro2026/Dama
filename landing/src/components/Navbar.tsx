@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function Navbar() {
-  const [solid, setSolid] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const fn = () => setSolid(window.scrollY > 80);
+    const fn = () => setScrolled(window.scrollY > 10);
+    fn();
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
@@ -21,9 +22,8 @@ export default function Navbar() {
         right: 0,
         zIndex: 50,
         transition: "background 0.4s ease, border-color 0.4s ease",
-        background: solid ? "#F5F3EC" : "transparent",
-        backdropFilter: solid ? "none" : "none",
-        borderBottom: solid ? "1px solid rgba(0,0,0,0.08)" : "1px solid transparent",
+        background: "#F5F3EC",
+        borderBottom: scrolled ? "1px solid rgba(0,0,0,0.08)" : "1px solid transparent",
       }}
     >
       <div
@@ -37,7 +37,7 @@ export default function Navbar() {
       >
         <a href="/" aria-label="Dama24 Banqueting – torna alla home">
           <Image
-            src={solid ? "/loghi/logo_banqueting nero.svg" : "/loghi/logo_banqueting bianco.svg"}
+            src="/loghi/logo_banqueting nero.svg"
             alt="Dama24 Banqueting"
             width={148}
             height={48}
@@ -60,15 +60,15 @@ export default function Navbar() {
                 key={href}
                 href={href}
                 className="t-label"
-                style={{ color: solid ? "rgba(0,0,0,0.55)" : "rgba(245,243,236,0.6)", transition: "color 0.2s" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = solid ? "#000000" : "#F5F3EC")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = solid ? "rgba(0,0,0,0.55)" : "rgba(245,243,236,0.6)")}
+                style={{ color: "rgba(0,0,0,0.55)", transition: "color 0.2s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#000000")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(0,0,0,0.55)")}
               >
                 {label}
               </a>
             ))}
           </div>
-          <a href="#contatto" className={solid ? "btn btn-ghost-dark" : "btn btn-fill"} style={{ padding: "0.625rem 1.375rem" }}>
+          <a href="#contatto" className="btn btn-ghost-dark" style={{ padding: "0.625rem 1.375rem" }}>
             Preventivo
           </a>
         </nav>
