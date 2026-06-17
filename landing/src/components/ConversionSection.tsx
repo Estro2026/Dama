@@ -42,7 +42,7 @@ export default function ConversionSection() {
         method: "POST", body: data, headers: { Accept: "application/json" },
       });
       if (!res.ok) throw new Error();
-      window.location.href = window.location.origin + "/dama/grazie/";
+      window.location.href = window.location.origin + "/Dama/grazie/";
     } catch {
       setError("Si è verificato un errore. Riprova o contattaci direttamente.");
       setSubmitting(false);
