@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catering Aziendale Milano | Dama24 Banqueting</title>
+  <meta name="description" content="Catering aziendale, banqueting ed eventi corporate a Milano. Coffee break, convention, fiere e inaugurazioni. Preventivo gratuito, risposta in 24 ore." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://estro2026.github.io/Dama/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://estro2026.github.io/Dama/" />
+  <meta property="og:title" content="Catering Aziendale Milano | Dama24 Banqueting" />
+  <meta property="og:description" content="Catering aziendale, banqueting ed eventi corporate a Milano. Preventivo gratuito in 24 ore." />
+  <meta property="og:image" content="https://estro2026.github.io/Dama/immagini/catering.webp" />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FoodEstablishment",
+    "name": "Dama24 Banqueting",
+    "description": "Catering aziendale, banqueting ed eventi corporate a Milano.",
+    "url": "https://estro2026.github.io/Dama/",
+    "telephone": "[PLACEHOLDER]",
+    "email": "[PLACEHOLDER]",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Milano",
+      "addressCountry": "IT"
+    },
+    "servesCuisine": "Italian",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Servizi Catering",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Catering Aziendale Milano" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Banqueting su Misura" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Coffee Break Aziendali" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Catering Convention e Fiere" } }
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     NAVBAR
+══════════════════════════════════ -->
+<header class="navbar" aria-label="Navigazione principale">
+  <div class="container">
+    <div class="navbar__inner">
+      <a href="#" class="navbar__logo" aria-label="Dama24 Banqueting – torna alla home">
+        <img src="loghi/logo_banqueting nero.svg" alt="Dama24 Banqueting" width="148" height="48" />
+      </a>
+      <nav class="navbar__nav" aria-label="Menu">
+        <div class="navbar__links">
+          <a href="#servizi">Servizi</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <a href="#contatto" class="btn btn-ghost-dark" style="padding:0.625rem 1.375rem">Preventivo</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section class="hero" id="hero" aria-label="Dama24 Banqueting – Catering aziendale Milano">
+
+  <!-- Video panel -->
+  <div class="hero__video-panel">
+    <video class="hero__video" autoplay loop muted playsinline preload="auto" aria-hidden="true">
+      <source src="immagini/video_banqueting e catering eventi.mp4" type="video/mp4" />
+    </video>
+    <img class="hero__video-fallback" src="immagini/catering.webp" alt="" aria-hidden="true" />
+    <div class="hero__overlay" aria-hidden="true"></div>
+    <div class="hero__content">
+      <p class="t-label hero__badge" data-reveal="fade">Catering Aziendale · Milano</p>
+      <h1 class="t-display hero__title" data-reveal data-delay="100">
+        Il catering aziendale che trasforma ogni evento in un'esperienza
+      </h1>
+      <span class="dama-rule hero__rule" data-reveal="fade" data-delay="200" aria-hidden="true"></span>
+      <p class="t-body hero__desc" data-reveal data-delay="300">
+        Dal coffee break alla convention. Qualità, regia e un unico referente per ogni dettaglio.
+      </p>
+      <div class="hero__ctas" data-reveal="fade" data-delay="400">
+        <a href="#contatto" class="btn btn-fill">Richiedi preventivo</a>
+        <a href="#servizi" class="btn btn-ghost-light">Scopri i servizi</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form panel -->
+  <div class="hero__form-panel">
+    <p class="t-label hero__form-badge">Preventivo gratuito</p>
+    <h2 class="t-h3 hero__form-title">Raccontaci il tuo evento</h2>
+    <p class="t-small hero__form-sub">Risposta entro 24 ore con una proposta su misura.</p>
+
+    <form class="form-grid js-formspree"
+          action="https://formspree.io/f/FORMSPREE_ID"
+          method="POST"
+          novalidate>
+      <input type="hidden" name="_source" value="hero" />
+      <input type="hidden" name="_next" value="https://estro2026.github.io/Dama/grazie/" />
+
+      <div class="form-field">
+        <label class="form-label" for="h-tipo">Tipo di evento</label>
+        <select class="form-input" id="h-tipo" name="tipo_evento">
+          <option value="">Seleziona…</option>
+          <option>Catering Aziendale</option>
+          <option>Banqueting</option>
+          <option>Coffee Break</option>
+          <option>Convention / Fiera</option>
+          <option>Inaugurazione</option>
+          <option>Altro</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label" for="h-nome">Nome e cognome *</label>
+          <input class="form-input" type="text" id="h-nome" name="nome" required placeholder="Mario Rossi" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="h-azienda">Azienda</label>
+          <input class="form-input" type="text" id="h-azienda" name="azienda" placeholder="Nome azienda" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label" for="h-email">Email aziendale *</label>
+          <input class="form-input" type="email" id="h-email" name="email" required placeholder="mario@azienda.it" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="h-tel">Telefono</label>
+          <input class="form-input" type="tel" id="h-tel" name="telefono" placeholder="+39 02 …" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label" for="h-ospiti">N° ospiti stimati</label>
+          <input class="form-input" type="text" id="h-ospiti" name="ospiti" placeholder="es. 50" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="h-data">Data evento (indicativa)</label>
+          <input class="form-input" type="text" id="h-data" name="data_evento" placeholder="es. Ottobre 2026" />
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label class="form-label" for="h-note">Note aggiuntive</label>
+        <textarea class="form-input" id="h-note" name="note" rows="3" placeholder="Dettagli, richieste speciali…"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-fill form-submit">Invia richiesta</button>
+      <p class="form-error" role="alert">Errore nell'invio. Riprova o contattaci direttamente.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     NUMBERS
+══════════════════════════════════ -->
+<section class="numbers" aria-label="I nostri numeri">
+  <div class="numbers__grid">
+    <div class="numbers__item" data-reveal="fade">
+      <p class="numbers__value">—</p>
+      <p class="t-label numbers__label">Anni di esperienza</p>
+    </div>
+    <div class="numbers__item" data-reveal="fade" data-delay="100">
+      <p class="numbers__value">—</p>
+      <p class="t-label numbers__label">Eventi all'anno</p>
+    </div>
+    <div class="numbers__item" data-reveal="fade" data-delay="200">
+      <p class="numbers__value">—</p>
+      <p class="t-label numbers__label">Ospiti serviti</p>
+    </div>
+    <div class="numbers__item" data-reveal="fade" data-delay="300">
+      <p class="numbers__value">—</p>
+      <p class="t-label numbers__label">Clienti corporate</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     SERVICES
+══════════════════════════════════ -->
+<section class="services section-pad" id="servizi" aria-labelledby="services-title">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <p class="t-label section-label">I nostri servizi</p>
+      <h2 class="t-h2" id="services-title">Ogni formato di evento,<br>una qualità costante</h2>
+      <span class="dama-rule section-rule" aria-hidden="true"></span>
+    </div>
+    <div class="services__grid">
+      <article class="service-card" data-reveal data-delay="0">
+        <div class="service-card__img">
+          <img src="immagini/catering.webp" alt="Catering aziendale Milano" loading="lazy" />
+        </div>
+        <div class="service-card__body">
+          <h3 class="t-h4 service-card__title">Catering Aziendale</h3>
+          <p class="t-small service-card__desc">Dalla colazione di lavoro al pranzo executive. Qualità e puntualità garantite.</p>
+        </div>
+      </article>
+      <article class="service-card" data-reveal data-delay="100">
+        <div class="service-card__img">
+          <img src="immagini/catering2.webp" alt="Banqueting su misura" loading="lazy" />
+        </div>
+        <div class="service-card__body">
+          <h3 class="t-h4 service-card__title">Banqueting su Misura</h3>
+          <p class="t-small service-card__desc">Allestimenti e menu personalizzati per ogni tipo di evento.</p>
+        </div>
+      </article>
+      <article class="service-card" data-reveal data-delay="200">
+        <div class="service-card__img">
+          <img src="immagini/catering3.webp" alt="Bar catering e mixology" loading="lazy" />
+        </div>
+        <div class="service-card__body">
+          <h3 class="t-h4 service-card__title">Bar Catering &amp; Mixology</h3>
+          <p class="t-small service-card__desc">Open bar, cocktail e coffee break con bartender professionisti.</p>
+        </div>
+      </article>
+      <article class="service-card" data-reveal data-delay="300">
+        <div class="service-card__img">
+          <img src="immagini/catering.webp" alt="Allestimenti e regia eventi" loading="lazy" />
+        </div>
+        <div class="service-card__body">
+          <h3 class="t-h4 service-card__title">Allestimenti &amp; Regia</h3>
+          <p class="t-small service-card__desc">Un unico referente per food, setup e intrattenimento.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     WHY CHOOSE US
+══════════════════════════════════ -->
+<section class="why section-pad" aria-labelledby="why-title">
+  <div class="container">
+    <div class="why__inner">
+      <div class="why__img" data-reveal="fade">
+        <img src="immagini/catering2.webp" alt="Dama24 Banqueting – evento aziendale" loading="lazy" />
+      </div>
+      <div>
+        <p class="t-label why__label" data-reveal="fade">Perché sceglierci</p>
+        <h2 class="t-h2 why__title" id="why-title" data-reveal data-delay="100">
+          Precisione, gusto e un unico referente per ogni dettaglio
+        </h2>
+        <p class="t-body why__desc" data-reveal data-delay="200">
+          Ogni evento è un progetto a sé. Ti affianchiamo dalla proposta al servizio, coordinando ogni aspetto con la stessa cura che mettiamo in ogni piatto.
+        </p>
+        <div class="why__pillars" data-reveal data-delay="300">
+          <div class="why__pillar">
+            <p class="t-h4 why__pillar-title">Equipe Dedicata</p>
+            <p class="t-small why__pillar-desc">Un consulente unico segue il tuo evento dall'inizio alla fine.</p>
+          </div>
+          <div class="why__pillar">
+            <p class="t-h4 why__pillar-title">Menu Personalizzati</p>
+            <p class="t-small why__pillar-desc">Nessun format standard. Ogni proposta nasce dal tuo brief.</p>
+          </div>
+          <div class="why__pillar">
+            <p class="t-h4 why__pillar-title">Logistica Completa</p>
+            <p class="t-small why__pillar-desc">Gestiamo location, allestimento, personale e attrezzature.</p>
+          </div>
+          <div class="why__pillar">
+            <p class="t-h4 why__pillar-title">Risposta 24h</p>
+            <p class="t-small why__pillar-desc">Preventivo gratuito e risposta garantita entro 24 ore lavorative.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     GALLERY
+══════════════════════════════════ -->
+<section class="gallery section-pad" id="gallery" aria-label="Gallery eventi">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <p class="t-label section-label" style="color:rgba(245,243,236,0.4)">Gallery</p>
+      <h2 class="t-h2" style="color:#F5F3EC">Ogni evento racconta<br>una storia unica</h2>
+      <span class="dama-rule section-rule" aria-hidden="true"></span>
+    </div>
+    <div class="gallery__grid">
+      <div class="gallery__item gallery__item--large">
+        <img src="immagini/catering.webp" alt="Catering aziendale Milano" loading="lazy" />
+      </div>
+      <div class="gallery__item">
+        <img src="immagini/catering2.webp" alt="Banqueting eventi aziendali" loading="lazy" />
+      </div>
+      <div class="gallery__item">
+        <img src="immagini/catering3.webp" alt="Bar catering e mixology" loading="lazy" />
+      </div>
+      <div class="gallery__item gallery__item--wide">
+        <img src="immagini/catering2.webp" alt="Convention e fiere catering" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CONVERSION
+══════════════════════════════════ -->
+<section class="conversion section-pad" id="contatto" aria-labelledby="conversion-title">
+  <div class="container">
+    <div class="conversion__inner">
+
+      <!-- Steps -->
+      <div>
+        <p class="t-label conversion__label" data-reveal="fade">Come funziona</p>
+        <h2 class="t-h2 conversion__title" id="conversion-title" data-reveal data-delay="100">
+          Un preventivo su misura in 24 ore
+        </h2>
+        <div class="conversion__steps">
+          <div class="conversion__step" data-reveal data-delay="100">
+            <span class="conversion__step-num" aria-hidden="true">01</span>
+            <div>
+              <p class="t-h4 conversion__step-title">Inviaci il brief</p>
+              <p class="t-small conversion__step-desc">Compila il form con i dettagli del tuo evento.</p>
+            </div>
+          </div>
+          <div class="conversion__step" data-reveal data-delay="200">
+            <span class="conversion__step-num" aria-hidden="true">02</span>
+            <div>
+              <p class="t-h4 conversion__step-title">Analizziamo la richiesta</p>
+              <p class="t-small conversion__step-desc">Il nostro team valuta ogni dettaglio con cura.</p>
+            </div>
+          </div>
+          <div class="conversion__step" data-reveal data-delay="300">
+            <span class="conversion__step-num" aria-hidden="true">03</span>
+            <div>
+              <p class="t-h4 conversion__step-title">Ricevi la proposta</p>
+              <p class="t-small conversion__step-desc">Una proposta personalizzata, senza format standard.</p>
+            </div>
+          </div>
+          <div class="conversion__step" data-reveal data-delay="400">
+            <span class="conversion__step-num" aria-hidden="true">04</span>
+            <div>
+              <p class="t-h4 conversion__step-title">Confermiamo i dettagli</p>
+              <p class="t-small conversion__step-desc">Un consulente ti segue fino al giorno dell'evento.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="conversion__sticky">
+        <div class="form-panel-dark" data-reveal data-delay="200">
+          <p class="t-label" style="color:var(--bordeaux);margin-bottom:1rem">Richiedi il tuo preventivo</p>
+          <form class="form-grid js-formspree"
+                action="https://formspree.io/f/FORMSPREE_ID"
+                method="POST"
+                novalidate>
+            <input type="hidden" name="_source" value="conversion" />
+            <input type="hidden" name="_next" value="https://estro2026.github.io/Dama/grazie/" />
+
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="c-nome">Nome e cognome *</label>
+                <input class="form-input" type="text" id="c-nome" name="nome" required placeholder="Mario Rossi" />
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="c-azienda">Azienda</label>
+                <input class="form-input" type="text" id="c-azienda" name="azienda" placeholder="Nome azienda" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="c-email">Email aziendale *</label>
+                <input class="form-input" type="email" id="c-email" name="email" required placeholder="mario@azienda.it" />
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="c-tel">Telefono</label>
+                <input class="form-input" type="tel" id="c-tel" name="telefono" placeholder="+39 02 …" />
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="c-tipo">Tipo di evento</label>
+              <select class="form-input" id="c-tipo" name="tipo_evento">
+                <option value="">Seleziona…</option>
+                <option>Catering Aziendale</option>
+                <option>Banqueting</option>
+                <option>Coffee Break</option>
+                <option>Convention / Fiera</option>
+                <option>Inaugurazione</option>
+                <option>Altro</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" for="c-ospiti">N° ospiti stimati</label>
+                <input class="form-input" type="text" id="c-ospiti" name="ospiti" placeholder="es. 50" />
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="c-data">Data evento</label>
+                <input class="form-input" type="text" id="c-data" name="data_evento" placeholder="es. Ottobre 2026" />
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="c-note">Note aggiuntive</label>
+              <textarea class="form-input" id="c-note" name="note" rows="3" placeholder="Dettagli, richieste speciali…"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-fill form-submit">Invia richiesta</button>
+            <p class="form-error" role="alert">Errore nell'invio. Riprova o contattaci direttamente.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FAQ
+══════════════════════════════════ -->
+<section class="faq section-pad" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <p class="t-label section-label">Domande frequenti</p>
+      <h2 class="t-h2" id="faq-title">Domande &amp; risposte</h2>
+      <span class="dama-rule section-rule" aria-hidden="true"></span>
+    </div>
+
+    <div class="faq__list">
+      <dl>
+
+        <div class="faq__item">
+          <dt>
+            <button class="faq__btn" type="button" aria-expanded="false" aria-controls="faq-0">
+              <span class="faq__question">In quali aree operate per il catering aziendale?</span>
+              <span class="faq__icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="1" x2="5" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+          </dt>
+          <dd class="faq__answer" id="faq-0"><div class="faq__answer-inner"><p class="t-body" style="color:rgba(0,0,0,0.55);font-style:italic">[PLACEHOLDER – da completare con le aree di copertura reali]</p></div></dd>
+        </div>
+
+        <div class="faq__item">
+          <dt>
+            <button class="faq__btn" type="button" aria-expanded="false" aria-controls="faq-1">
+              <span class="faq__question">Qual è il numero minimo di ospiti per richiedere un servizio?</span>
+              <span class="faq__icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="1" x2="5" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+          </dt>
+          <dd class="faq__answer" id="faq-1"><div class="faq__answer-inner"><p class="t-body" style="color:rgba(0,0,0,0.55);font-style:italic">[PLACEHOLDER – da completare con i minimi di copertura]</p></div></dd>
+        </div>
+
+        <div class="faq__item">
+          <dt>
+            <button class="faq__btn" type="button" aria-expanded="false" aria-controls="faq-2">
+              <span class="faq__question">Come viene strutturata la proposta personalizzata?</span>
+              <span class="faq__icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="1" x2="5" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+          </dt>
+          <dd class="faq__answer" id="faq-2"><div class="faq__answer-inner"><p class="t-body" style="color:rgba(0,0,0,0.55);font-style:italic">[PLACEHOLDER – descrivere il processo di proposta commerciale]</p></div></dd>
+        </div>
+
+        <div class="faq__item">
+          <dt>
+            <button class="faq__btn" type="button" aria-expanded="false" aria-controls="faq-3">
+              <span class="faq__question">Gestite sia il catering sia gli allestimenti?</span>
+              <span class="faq__icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="1" x2="5" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+          </dt>
+          <dd class="faq__answer" id="faq-3"><div class="faq__answer-inner"><p class="t-body" style="color:rgba(0,0,0,0.55);font-style:italic">[PLACEHOLDER – confermare l'offerta integrata food + setup]</p></div></dd>
+        </div>
+
+        <div class="faq__item">
+          <dt>
+            <button class="faq__btn" type="button" aria-expanded="false" aria-controls="faq-4">
+              <span class="faq__question">Con quanto anticipo è necessario prenotare?</span>
+              <span class="faq__icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="1" x2="5" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+          </dt>
+          <dd class="faq__answer" id="faq-4"><div class="faq__answer-inner"><p class="t-body" style="color:rgba(0,0,0,0.55);font-style:italic">[PLACEHOLDER – inserire i tempi minimi di prenotazione]</p></div></dd>
+        </div>
+
+        <div class="faq__item">
+          <dt>
+            <button class="faq__btn" type="button" aria-expanded="false" aria-controls="faq-5">
+              <span class="faq__question">Offrite servizi di mixology e open bar per eventi corporate?</span>
+              <span class="faq__icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="1" x2="5" y2="9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+          </dt>
+          <dd class="faq__answer" id="faq-5"><div class="faq__answer-inner"><p class="t-body" style="color:rgba(0,0,0,0.55);font-style:italic">[PLACEHOLDER – descrivere il servizio bar catering]</p></div></dd>
+        </div>
+
+      </dl>
+
+      <div class="faq__cta" data-reveal>
+        <p class="t-small">Non hai trovato risposta alla tua domanda?</p>
+        <a href="#contatto" class="btn btn-ghost-dark">Contattaci direttamente</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer class="footer" aria-label="Piè di pagina Dama24 Banqueting">
+  <div class="container">
+    <div class="footer__grid">
+
+      <!-- Brand -->
+      <div>
+        <img class="footer__logo" src="loghi/logo_banqueting bianco.svg" alt="Dama24 Banqueting" />
+        <p class="t-small footer__tagline">Catering aziendale, banqueting ed eventi corporate a Milano.</p>
+        <span class="dama-rule footer__rule" aria-hidden="true"></span>
+        <ul class="footer__trust">
+          <li>Preventivo gratuito</li>
+          <li>Risposta entro 24 ore</li>
+          <li>Servizio personalizzato</li>
+          <li>Un unico referente</li>
+        </ul>
+      </div>
+
+      <!-- Servizi -->
+      <div>
+        <h3 class="t-label footer__col-title">Servizi</h3>
+        <ul class="footer__links">
+          <li>Catering Aziendale Milano</li>
+          <li>Banqueting su misura</li>
+          <li>Coffee Break Aziendali</li>
+          <li>Catering Convention</li>
+          <li>Catering Fiere</li>
+          <li>Catering Inaugurazioni</li>
+          <li>Bar Catering &amp; Mixology</li>
+          <li>Allestimenti &amp; Intrattenimento</li>
+        </ul>
+      </div>
+
+      <!-- Contatti -->
+      <div>
+        <h3 class="t-label footer__col-title">Contatti</h3>
+        <address class="footer__contact">
+          <div>
+            <p class="footer__contact-label">Telefono</p>
+            <p class="footer__contact-value"><a href="tel:PLACEHOLDER">[PLACEHOLDER]</a></p>
+          </div>
+          <div>
+            <p class="footer__contact-label">Email</p>
+            <p class="footer__contact-value"><a href="mailto:PLACEHOLDER">[PLACEHOLDER]</a></p>
+          </div>
+          <div>
+            <p class="footer__contact-label">Sede</p>
+            <p class="footer__contact-value">[PLACEHOLDER]</p>
+          </div>
+        </address>
+      </div>
+
+      <!-- CTA -->
+      <div>
+        <h3 class="t-label footer__cta-title">Preventivo</h3>
+        <p class="t-small footer__cta-desc">Raccontaci il tuo evento. Risposta entro 24 ore.</p>
+        <a href="#contatto" class="btn btn-fill">Richiedi preventivo</a>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">© <span id="year"></span> Dama24 Banqueting. Tutti i diritti riservati.</p>
+      <div class="footer__legal">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="cookie-policy.html">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
