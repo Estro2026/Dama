@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+      - "claude/**"
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -12,8 +16,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -29,6 +33,11 @@ jobs:
           cache: npm
           cache-dependency-path: landing/package-lock.json
 
+      - name: Sync assets from root to public
+        run: |
+          cp -r Loghi/. landing/public/loghi/
+          cp -r immagini/. landing/public/immagini/
+
       - name: Install dependencies
         working-directory: landing
         run: npm ci
@@ -38,11 +47,13 @@ jobs:
         run: npm run build
 
       - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: landing/out
 
   deploy:
+    if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     environment:
@@ -52,3 +63,11 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  report-build-status:
+    if: github.ref != 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build OK
+        run: echo "Build passed on ${{ github.ref_name }}"
