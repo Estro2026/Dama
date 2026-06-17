@@ -1,30 +1,13 @@
 "use client";
-
 import { useState, FormEvent } from "react";
 
 const FORMSPREE = "https://formspree.io/f/FORMSPREE_ID";
 
 const steps = [
-  {
-    n: "01",
-    title: "Raccontaci il tuo evento",
-    desc: "Condividi la tua visione: tipologia, ospiti, location, data e aspettative.",
-  },
-  {
-    n: "02",
-    title: "Ricevi una proposta personalizzata",
-    desc: "Entro 24 ore prepariamo una proposta su misura, senza schemi prefissati.",
-  },
-  {
-    n: "03",
-    title: "Definiamo menù, servizio e allestimenti",
-    desc: "Costruiamo insieme ogni dettaglio: menù, mise en place, brigata, arredi.",
-  },
-  {
-    n: "04",
-    title: "Realizziamo il tuo evento",
-    desc: "Siamo presenti in ogni momento. Il tuo evento diventa un'esperienza memorabile.",
-  },
+  { n: "01", title: "Raccontaci il tuo evento", desc: "Condividi la tua visione: tipologia, ospiti, location e data." },
+  { n: "02", title: "Ricevi una proposta personalizzata", desc: "Entro 24 ore una proposta su misura, senza format standard." },
+  { n: "03", title: "Definiamo menù, servizio e allestimenti", desc: "Costruiamo ogni dettaglio insieme: menù, mise en place, brigata." },
+  { n: "04", title: "Realizziamo il tuo evento", desc: "Presenti in ogni momento. Un'esperienza memorabile." },
 ];
 
 export default function ConversionSection() {
@@ -38,13 +21,11 @@ export default function ConversionSection() {
     const data = new FormData(e.currentTarget);
     data.append("_source", "conversion");
     try {
-      const res = await fetch(FORMSPREE, {
-        method: "POST", body: data, headers: { Accept: "application/json" },
-      });
+      const res = await fetch(FORMSPREE, { method: "POST", body: data, headers: { Accept: "application/json" } });
       if (!res.ok) throw new Error();
       window.location.href = window.location.origin + "/Dama/grazie/";
     } catch {
-      setError("Si è verificato un errore. Riprova o contattaci direttamente.");
+      setError("Errore nell'invio. Riprova o contattaci direttamente.");
       setSubmitting(false);
     }
   }
@@ -52,136 +33,143 @@ export default function ConversionSection() {
   return (
     <section
       id="contatto"
-      aria-labelledby="conversion-heading"
-      className="py-24 lg:py-32"
-      style={{ background: "#0a0a0a" }}
+      aria-labelledby="conversion-title"
+      style={{ background: "#000000" }}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="container section-pad">
+        <div
+          style={{ display: "grid", gap: "clamp(3rem, 6vw, 6rem)", alignItems: "start" }}
+          className="lg:grid-cols-2"
+        >
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-
-          {/* ── Left: process ── */}
+          {/* Sinistra: steps */}
           <div>
-            <p className="overline text-ivory/40 mb-5">Come funziona</p>
+            <p className="t-label" style={{ color: "rgba(245,243,236,0.4)", marginBottom: "0.75rem" }}>
+              Come funziona
+            </p>
             <h2
-              id="conversion-heading"
-              className="text-ivory font-display mb-3"
-              style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3.5vw, 3rem)" }}
+              id="conversion-title"
+              className="t-h2"
+              style={{ color: "#F5F3EC", marginBottom: "0.75rem" }}
             >
-              Dall'idea all'evento. Senza interruzioni.
+              Dall'idea all'evento.
             </h2>
-            <span className="dama-line block mb-10" aria-hidden />
+            <span className="dama-rule" style={{ display: "block", marginBottom: "2.5rem" }} aria-hidden />
 
-            <ol className="space-y-8" aria-label="Processo di lavoro Dama24">
+            <ol style={{ display: "flex", flexDirection: "column", gap: "2rem", listStyle: "none" }}>
               {steps.map((s, i) => (
-                <li key={s.n} className="flex gap-6" data-reveal data-delay={String(i + 1)}>
+                <li
+                  key={s.n}
+                  data-reveal
+                  data-delay={`${i * 100}`}
+                  style={{ display: "flex", gap: "1.25rem" }}
+                >
                   <span
-                    className="flex-shrink-0 font-display text-3xl leading-none mt-0.5"
-                    style={{ fontFamily: "var(--font-display)", color: "rgba(140,24,34,0.6)" }}
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "1.75rem",
+                      lineHeight: 1,
+                      color: "rgba(140,24,34,0.5)",
+                      flexShrink: 0,
+                      paddingTop: "0.1rem",
+                    }}
                     aria-hidden
                   >
                     {s.n}
                   </span>
                   <div>
-                    <h3 className="text-ivory font-ui font-semibold text-sm mb-1">
-                      {s.title}
-                    </h3>
-                    <p className="text-ivory/45 text-sm leading-relaxed font-body">
-                      {s.desc}
-                    </p>
+                    <h3 className="t-h4" style={{ color: "#F5F3EC", marginBottom: "0.375rem" }}>{s.title}</h3>
+                    <p className="t-small" style={{ color: "rgba(245,243,236,0.45)" }}>{s.desc}</p>
                   </div>
                 </li>
               ))}
             </ol>
 
             {/* Trust badges */}
-            <div className="mt-12 pt-8 border-t border-ivory/10 grid grid-cols-2 gap-3">
+            <ul
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "0.5rem 1.5rem",
+                marginTop: "2.5rem",
+                paddingTop: "2rem",
+                borderTop: "1px solid rgba(245,243,236,0.08)",
+                listStyle: "none",
+              }}
+            >
               {["Preventivo gratuito", "Risposta entro 24 ore", "Nessun impegno", "Consulenza dedicata"].map((t) => (
-                <div key={t} className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "#8C1822" }} aria-hidden />
-                  <span className="text-ivory/50 text-xs font-body">{t}</span>
-                </div>
+                <li key={t} className="t-small" style={{ color: "rgba(245,243,236,0.4)", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{ width: "0.25rem", height: "0.25rem", background: "#8C1822", borderRadius: "50%", flexShrink: 0 }} aria-hidden />
+                  {t}
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          {/* ── Right: form ── */}
-          <div data-reveal="right">
-            <p className="overline text-ivory/40 mb-3">Richiedi il tuo preventivo</p>
-            <h3
-              className="text-ivory font-display text-xl lg:text-2xl mb-2"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
+          {/* Destra: form */}
+          <div data-reveal style={{ position: "sticky", top: "6rem" }}>
+            <p className="t-label" style={{ color: "rgba(245,243,236,0.4)", marginBottom: "0.75rem" }}>
+              Richiedi il tuo preventivo
+            </p>
+            <h3 className="t-h3" style={{ color: "#F5F3EC", marginBottom: "0.5rem" }}>
               Inizia con una conversazione
             </h3>
-            <span className="dama-line block mb-8" aria-hidden />
+            <span className="dama-rule" style={{ display: "block", marginBottom: "2rem" }} aria-hidden />
 
-            <form onSubmit={handleSubmit} noValidate aria-label="Modulo preventivo" className="space-y-5 dark-form">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <form
+              onSubmit={handleSubmit}
+              noValidate
+              aria-label="Modulo richiesta preventivo"
+              style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
+            >
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                 {[
-                  { id: "conv-nome", name: "nome", label: "Nome", type: "text", auto: "given-name", ph: "Il tuo nome" },
-                  { id: "conv-azienda", name: "azienda", label: "Azienda", type: "text", auto: "organization", ph: "Nome azienda" },
+                  { id: "c-nome", name: "nome", label: "Nome *", ph: "Il tuo nome", type: "text", ac: "given-name" },
+                  { id: "c-az", name: "azienda", label: "Azienda *", ph: "Nome azienda", type: "text", ac: "organization" },
                 ].map((f) => (
-                  <div key={f.id}>
-                    <label htmlFor={f.id} className="block text-[0.65rem] tracking-widest uppercase text-ivory/40 mb-1 font-ui">
-                      {f.label} <span aria-hidden>*</span>
-                    </label>
-                    <input id={f.id} name={f.name} type={f.type} required autoComplete={f.auto}
-                      placeholder={f.ph} className="field-input" />
+                  <div key={f.id} className="form-field">
+                    <label htmlFor={f.id} className="form-label">{f.label}</label>
+                    <input id={f.id} name={f.name} type={f.type} required autoComplete={f.ac} placeholder={f.ph} className="form-input" />
                   </div>
                 ))}
               </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                 {[
-                  { id: "conv-email", name: "email", label: "Email", type: "email", auto: "email", ph: "email@azienda.it" },
-                  { id: "conv-tel", name: "telefono", label: "Telefono", type: "tel", auto: "tel", ph: "+39 000 000 0000" },
+                  { id: "c-email", name: "email", label: "Email *", ph: "name@azienda.it", type: "email", ac: "email" },
+                  { id: "c-tel", name: "telefono", label: "Telefono *", ph: "+39 000 000 0000", type: "tel", ac: "tel" },
                 ].map((f) => (
-                  <div key={f.id}>
-                    <label htmlFor={f.id} className="block text-[0.65rem] tracking-widest uppercase text-ivory/40 mb-1 font-ui">
-                      {f.label} <span aria-hidden>*</span>
-                    </label>
-                    <input id={f.id} name={f.name} type={f.type} required autoComplete={f.auto}
-                      placeholder={f.ph} className="field-input" />
+                  <div key={f.id} className="form-field">
+                    <label htmlFor={f.id} className="form-label">{f.label}</label>
+                    <input id={f.id} name={f.name} type={f.type} required autoComplete={f.ac} placeholder={f.ph} className="form-input" />
                   </div>
                 ))}
               </div>
-
-              <div>
-                <label htmlFor="conv-tipo" className="block text-[0.65rem] tracking-widest uppercase text-ivory/40 mb-1 font-ui">
-                  Tipo di evento
-                </label>
-                <select id="conv-tipo" name="tipoEvento" className="field-input">
-                  <option value="">Seleziona tipologia</option>
+              <div className="form-field">
+                <label htmlFor="c-tipo" className="form-label">Tipo di evento</label>
+                <select id="c-tipo" name="tipoEvento" className="form-input">
+                  <option value="">Seleziona…</option>
                   <option value="convention">Convention / Congresso</option>
                   <option value="fiera">Fiera</option>
-                  <option value="inaugurazione">Inaugurazione aziendale</option>
+                  <option value="inaugurazione">Inaugurazione</option>
                   <option value="meeting">Meeting aziendale</option>
                   <option value="coffee-break">Coffee Break</option>
                   <option value="altro">Altro</option>
                 </select>
               </div>
-
-              <div>
-                <label htmlFor="conv-msg" className="block text-[0.65rem] tracking-widest uppercase text-ivory/40 mb-1 font-ui">
-                  Messaggio
-                </label>
-                <textarea id="conv-msg" name="messaggio" rows={3}
-                  placeholder="Raccontaci il tuo evento…" className="field-input resize-none" />
+              <div className="form-field">
+                <label htmlFor="c-msg" className="form-label">Messaggio</label>
+                <textarea id="c-msg" name="messaggio" rows={3} placeholder="Raccontaci il tuo evento…" className="form-input" style={{ resize: "none" }} />
               </div>
-
-              <div className="flex items-start gap-3">
-                <input id="conv-privacy" name="privacy" type="checkbox" required
-                  className="mt-0.5 w-3.5 h-3.5 flex-shrink-0 accent-bordeaux" />
-                <label htmlFor="conv-privacy" className="text-[0.7rem] text-ivory/35 leading-relaxed font-body">
-                  Acconsento al trattamento dei dati personali (GDPR – Reg. UE 679/2016).{" "}
-                  <a href="/privacy-policy" className="underline text-ivory/55">Privacy Policy</a>
+              <div style={{ display: "flex", gap: "0.625rem", alignItems: "flex-start" }}>
+                <input id="c-privacy" name="privacy" type="checkbox" required
+                  style={{ marginTop: "0.1rem", flexShrink: 0, accentColor: "#8C1822", width: "0.875rem", height: "0.875rem" }} />
+                <label htmlFor="c-privacy" className="t-small" style={{ color: "rgba(245,243,236,0.35)" }}>
+                  Acconsento al trattamento dei dati (GDPR – Reg. UE 679/2016).{" "}
+                  <a href="/privacy-policy" style={{ textDecoration: "underline", color: "rgba(245,243,236,0.5)" }}>Privacy Policy</a>
                 </label>
               </div>
-
-              {error && <p role="alert" className="text-xs text-red-400">{error}</p>}
-
-              <button type="submit" disabled={submitting} className="btn-primary w-full">
+              {error && <p role="alert" className="t-small" style={{ color: "#f87171" }}>{error}</p>}
+              <button type="submit" disabled={submitting} className="btn btn-fill" style={{ width: "100%" }}>
                 {submitting ? "Invio in corso…" : "Richiedi il tuo preventivo"}
               </button>
             </form>

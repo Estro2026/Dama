@@ -2,32 +2,24 @@ import Image from "next/image";
 
 const pillars = [
   {
-    number: "01",
+    n: "01",
     title: "Su misura",
-    description:
-      "Ogni evento viene progettato sulle reali esigenze dell'azienda. Nessun format standard, nessuna soluzione ripetuta. Solo progetti unici.",
-    pillar: "Composizione",
+    desc: "Ogni evento viene progettato sulle reali esigenze dell'azienda. Nessun format standard.",
   },
   {
-    number: "02",
+    n: "02",
     title: "Presenza Costante",
-    description:
-      "Un referente dedicato prima, durante e dopo l'evento. Un interlocutore che conosce ogni dettaglio del progetto e non abbandona il cliente.",
-    pillar: "Presenza",
+    desc: "Un referente dedicato prima, durante e dopo l'evento.",
   },
   {
-    number: "03",
+    n: "03",
     title: "Team Selezionato",
-    description:
-      "Una brigata scelta con cura, formata sull'eccellenza. Professionisti qualificati per eventi aziendali e corporate di qualsiasi scala.",
-    pillar: "Brigata",
+    desc: "Una brigata scelta con cura, formata sull'eccellenza del banqueting corporate.",
   },
   {
-    number: "04",
+    n: "04",
     title: "Un Solo Partner",
-    description:
-      "Food, beverage, allestimenti e coordinamento gestiti da un unico interlocutore. Semplicità operativa, controllo totale sull'esperienza.",
-    pillar: "Rituale",
+    desc: "Food, beverage, allestimenti e coordinamento gestiti da un unico interlocutore.",
   },
 ];
 
@@ -35,86 +27,103 @@ export default function WhyChooseUs() {
   return (
     <section
       id="perche-sceglierci"
-      aria-labelledby="why-heading"
-      className="py-24 lg:py-32"
-      style={{ background: "#0a0a0a" }}
+      aria-labelledby="why-title"
+      style={{ background: "#000000" }}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="container section-pad">
 
-        {/* ── Split header ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-16 lg:mb-20">
+        {/* Top row: label + headline + intro */}
+        <div
+          style={{
+            display: "grid",
+            gap: "2rem",
+            marginBottom: "clamp(3rem, 5vw, 4.5rem)",
+          }}
+          className="lg:grid-cols-2 lg:items-end"
+        >
           <div data-reveal>
-            <p className="overline text-ivory/40 mb-5">La differenza Dama24</p>
-            <h2
-              id="why-heading"
-              className="text-ivory font-display"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
+            <p className="t-label" style={{ color: "rgba(245,243,236,0.4)", marginBottom: "1rem" }}>
+              La differenza Dama24
+            </p>
+            <h2 id="why-title" className="t-h2" style={{ color: "#F5F3EC" }}>
               Perché le aziende scelgono Dama24
             </h2>
-            <span className="dama-line mt-7 block" aria-hidden />
+            <span className="dama-rule" style={{ display: "block", marginTop: "1.5rem" }} aria-hidden />
           </div>
-
-          <div className="flex flex-col justify-end" data-reveal data-delay="2">
-            <p className="text-ivory/50 text-sm leading-relaxed font-body mb-6 max-w-sm">
-              Eccellenza senza ostentazione. Approccio sartoriale. Filiera
-              etica e locale. Un modo diverso di interpretare il banqueting di
-              alta gamma.
+          <div data-reveal data-delay="200">
+            <p className="t-body" style={{ color: "rgba(245,243,236,0.5)", maxWidth: "28rem" }}>
+              Eccellenza senza ostentazione. Approccio sartoriale. Filiera etica
+              e locale. Un modo diverso di vivere il banqueting di alta gamma.
             </p>
-            <a href="#contatto" className="btn-primary self-start">
-              Richiedi una consulenza gratuita
-            </a>
           </div>
         </div>
 
-        {/* ── Image + pillars ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-4 lg:gap-6">
-
-          {/* Image */}
-          <div className="img-zoom aspect-[3/4] lg:aspect-auto" data-reveal="left">
+        {/* Content: image + pillars */}
+        <div
+          style={{ display: "grid", gap: "1.5rem", alignItems: "stretch" }}
+          className="lg:grid-cols-2"
+        >
+          {/* Immagine */}
+          <div
+            data-reveal
+            className="img-cover"
+            style={{ aspectRatio: "3/4", minHeight: "340px" }}
+          >
             <Image
               src="/immagini/catering2.webp"
-              alt="Servizio Dama24 Banqueting – cura del dettaglio in ogni evento"
-              width={700}
-              height={933}
-              className="w-full h-full object-cover"
+              alt="Servizio Dama24 Banqueting – cura del dettaglio e presenza costante in ogni evento"
+              fill
+              style={{ objectFit: "cover" }}
+              sizes="(max-width: 1024px) 100vw, 50vw"
               loading="lazy"
             />
           </div>
 
-          {/* Cards grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-ivory/8">
+          {/* Pillars 2×2 */}
+          <div
+            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1px", background: "rgba(245,243,236,0.06)" }}
+          >
             {pillars.map((p, i) => (
               <article
                 key={p.title}
-                className="flex flex-col gap-4 p-8 lg:p-10"
-                style={{ background: "#0a0a0a" }}
                 data-reveal
-                data-delay={String(i + 1)}
+                data-delay={`${i * 100}`}
+                style={{
+                  background: "#000000",
+                  padding: "clamp(1.5rem, 3vw, 2.25rem)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                }}
               >
-                <div className="flex items-baseline justify-between">
-                  <span
-                    className="font-display text-4xl leading-none"
-                    style={{ fontFamily: "var(--font-display)", color: "#8C1822", opacity: 0.7 }}
-                    aria-hidden
-                  >
-                    {p.number}
-                  </span>
-                  <span className="text-ivory/20 text-[0.6rem] tracking-[0.18em] uppercase font-ui">
-                    {p.pillar}
-                  </span>
-                </div>
-                <h3
-                  className="text-ivory font-ui font-semibold text-base"
+                <span
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "2rem",
+                    lineHeight: 1,
+                    color: "rgba(140,24,34,0.55)",
+                    fontWeight: 400,
+                  }}
+                  aria-hidden
                 >
+                  {p.n}
+                </span>
+                <h3 className="t-h4" style={{ color: "#F5F3EC" }}>
                   {p.title}
                 </h3>
-                <p className="text-ivory/45 text-sm leading-relaxed font-body flex-1">
-                  {p.description}
+                <p className="t-small" style={{ color: "rgba(245,243,236,0.45)", flex: 1 }}>
+                  {p.desc}
                 </p>
               </article>
             ))}
           </div>
+        </div>
+
+        {/* CTA */}
+        <div data-reveal style={{ marginTop: "clamp(2.5rem, 4vw, 3.5rem)", textAlign: "center" }}>
+          <a href="#contatto" className="btn btn-fill">
+            Richiedi una consulenza gratuita
+          </a>
         </div>
 
       </div>
