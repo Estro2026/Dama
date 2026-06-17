@@ -1,30 +1,32 @@
+import Image from "next/image";
+
 const pillars = [
   {
-    icon: "✦",
+    number: "01",
     title: "Su misura",
     description:
-      "Ogni evento viene progettato sulle reali esigenze dell'azienda. Nessun format standard, nessuna formula ripetuta.",
+      "Ogni evento viene progettato sulle reali esigenze dell'azienda. Nessun format standard, nessuna soluzione ripetuta. Solo progetti unici.",
     pillar: "Composizione",
   },
   {
-    icon: "◈",
+    number: "02",
     title: "Presenza Costante",
     description:
-      "Un referente dedicato prima, durante e dopo l'evento. Un interlocutore unico che conosce ogni dettaglio del progetto.",
+      "Un referente dedicato prima, durante e dopo l'evento. Un interlocutore che conosce ogni dettaglio del progetto e non abbandona il cliente.",
     pillar: "Presenza",
   },
   {
-    icon: "◇",
+    number: "03",
     title: "Team Selezionato",
     description:
-      "Professionisti qualificati per eventi aziendali e corporate. Una brigata scelta con cura, formata sull'eccellenza.",
+      "Una brigata scelta con cura, formata sull'eccellenza. Professionisti qualificati per eventi aziendali e corporate di qualsiasi scala.",
     pillar: "Brigata",
   },
   {
-    icon: "◉",
+    number: "04",
     title: "Un Solo Partner",
     description:
-      "Food, beverage, allestimenti e coordinamento gestiti da un unico interlocutore. Semplicità e controllo totale.",
+      "Food, beverage, allestimenti e coordinamento gestiti da un unico interlocutore. Semplicità operativa, controllo totale sull'esperienza.",
     pillar: "Rituale",
   },
 ];
@@ -34,16 +36,15 @@ export default function WhyChooseUs() {
     <section
       id="perche-sceglierci"
       aria-labelledby="why-heading"
-      className="py-20 lg:py-28 bg-ink"
+      className="py-24 lg:py-32"
       style={{ background: "#0a0a0a" }}
     >
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
-          <div className="max-w-xl">
-            <p className="text-ivory/50 text-xs tracking-[0.25em] uppercase font-ui mb-4">
-              La differenza Dama24
-            </p>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+
+        {/* ── Split header ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-16 lg:mb-20">
+          <div data-reveal>
+            <p className="overline text-ivory/40 mb-5">La differenza Dama24</p>
             <h2
               id="why-heading"
               className="text-ivory font-display"
@@ -51,57 +52,71 @@ export default function WhyChooseUs() {
             >
               Perché le aziende scelgono Dama24
             </h2>
-            <span
-              className="block mt-5 w-12 h-px"
-              style={{ background: "#8C1822" }}
-              aria-hidden
+            <span className="dama-line mt-7 block" aria-hidden />
+          </div>
+
+          <div className="flex flex-col justify-end" data-reveal data-delay="2">
+            <p className="text-ivory/50 text-sm leading-relaxed font-body mb-6 max-w-sm">
+              Eccellenza senza ostentazione. Approccio sartoriale. Filiera
+              etica e locale. Un modo diverso di interpretare il banqueting di
+              alta gamma.
+            </p>
+            <a href="#contatto" className="btn-primary self-start">
+              Richiedi una consulenza gratuita
+            </a>
+          </div>
+        </div>
+
+        {/* ── Image + pillars ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-4 lg:gap-6">
+
+          {/* Image */}
+          <div className="img-zoom aspect-[3/4] lg:aspect-auto" data-reveal="left">
+            <Image
+              src="/immagini/catering2.webp"
+              alt="Servizio Dama24 Banqueting – cura del dettaglio in ogni evento"
+              width={700}
+              height={933}
+              className="w-full h-full object-cover"
+              loading="lazy"
             />
           </div>
-          <p className="text-ivory/50 text-sm max-w-xs lg:text-right leading-relaxed font-body">
-            Eccellenza senza ostentazione. Approccio sartoriale. Filiera etica e
-            locale.
-          </p>
-        </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ivory/8">
-          {pillars.map((p) => (
-            <article
-              key={p.title}
-              className="bg-ink px-8 py-10 flex flex-col gap-5 group"
-              style={{ background: "#0a0a0a" }}
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-bordeaux text-xl" style={{ color: "#8C1822" }} aria-hidden>
-                  {p.icon}
-                </span>
-                <span className="text-ivory/20 text-xs tracking-[0.2em] uppercase font-ui">
-                  {p.pillar}
-                </span>
-              </div>
-              <h3
-                className="text-ivory font-display text-xl"
-                style={{ fontFamily: "var(--font-display)" }}
+          {/* Cards grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-ivory/8">
+            {pillars.map((p, i) => (
+              <article
+                key={p.title}
+                className="flex flex-col gap-4 p-8 lg:p-10"
+                style={{ background: "#0a0a0a" }}
+                data-reveal
+                data-delay={String(i + 1)}
               >
-                {p.title}
-              </h3>
-              <p className="text-ivory/55 text-sm leading-relaxed font-body flex-1">
-                {p.description}
-              </p>
-            </article>
-          ))}
+                <div className="flex items-baseline justify-between">
+                  <span
+                    className="font-display text-4xl leading-none"
+                    style={{ fontFamily: "var(--font-display)", color: "#8C1822", opacity: 0.7 }}
+                    aria-hidden
+                  >
+                    {p.number}
+                  </span>
+                  <span className="text-ivory/20 text-[0.6rem] tracking-[0.18em] uppercase font-ui">
+                    {p.pillar}
+                  </span>
+                </div>
+                <h3
+                  className="text-ivory font-ui font-semibold text-base"
+                >
+                  {p.title}
+                </h3>
+                <p className="text-ivory/45 text-sm leading-relaxed font-body flex-1">
+                  {p.description}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
 
-        {/* CTA */}
-        <div className="mt-12 text-center">
-          <a
-            href="#contatto"
-            className="inline-block px-10 py-4 bg-bordeaux text-ivory text-sm tracking-widest uppercase font-ui transition-all duration-300 hover:bg-bordeaux-dark"
-            style={{ backgroundColor: "#8C1822" }}
-          >
-            Richiedi una consulenza gratuita
-          </a>
-        </div>
       </div>
     </section>
   );

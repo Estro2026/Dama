@@ -1,23 +1,23 @@
 const stats = [
   {
-    value: "[NUMERO]",
+    value: null,
     label: "Eventi realizzati",
-    desc: "placeholder",
+    note: "dato da inserire",
   },
   {
-    value: "[NUMERO]",
+    value: null,
     label: "Aziende supportate",
-    desc: "placeholder",
+    note: "dato da inserire",
   },
   {
-    value: "[NUMERO]",
+    value: null,
     label: "Clienti soddisfatti",
-    desc: "placeholder",
+    note: "dato da inserire",
   },
   {
     value: "24h",
-    label: "Risposta entro 24 ore",
-    desc: "verified",
+    label: "Tempo di risposta",
+    note: "verificato",
   },
 ];
 
@@ -26,41 +26,33 @@ export default function Numbers() {
     <section
       id="numeri"
       aria-labelledby="numeri-heading"
-      className="bg-bordeaux-dark py-16 lg:py-20"
       style={{ background: "#47090F" }}
     >
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 id="numeri-heading" className="sr-only">
-          I nostri numeri
-        </h2>
-        <dl className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-ivory/10">
-          {stats.map((stat) => (
+      <h2 id="numeri-heading" className="sr-only">I nostri numeri</h2>
+
+      <div className="max-w-7xl mx-auto">
+        <dl className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-ivory/10">
+          {stats.map((s, i) => (
             <div
-              key={stat.label}
-              className="bg-bordeaux-dark px-8 py-10 text-center"
-              style={{ background: "#47090F" }}
+              key={s.label}
+              className="flex flex-col items-center justify-center text-center py-14 lg:py-16 px-6"
+              data-reveal
+              data-delay={String(i + 1)}
             >
-              <dt
-                className="text-ivory/60 text-xs tracking-[0.2em] uppercase font-ui mt-2"
-              >
-                {stat.label}
-              </dt>
               <dd
-                className="text-ivory font-display text-4xl lg:text-5xl mt-1"
-                style={{ fontFamily: "var(--font-display)" }}
+                className="text-ivory font-display leading-none mb-3"
+                style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3rem, 5vw, 4.5rem)" }}
+                aria-label={s.value ? s.value : `Dato non disponibile – ${s.note}`}
               >
-                {stat.value === "[NUMERO]" ? (
-                  <span
-                    className="text-ivory/30 text-2xl"
-                    aria-label="Dato non disponibile – da aggiornare"
-                    title="Placeholder: inserire il dato reale"
-                  >
-                    —
-                  </span>
+                {s.value ? (
+                  s.value
                 ) : (
-                  stat.value
+                  <span className="text-ivory/20 text-3xl tracking-widest" aria-hidden>—</span>
                 )}
               </dd>
+              <dt className="text-ivory/50 font-ui text-[0.65rem] tracking-[0.22em] uppercase">
+                {s.label}
+              </dt>
             </div>
           ))}
         </dl>

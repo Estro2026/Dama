@@ -4,34 +4,32 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "In quali aree operate per il catering aziendale?",
-    answer:
-      "[PLACEHOLDER – inserire le aree di copertura reali da fonte cliente]",
+    q: "In quali aree operate per il catering aziendale?",
+    a: "[PLACEHOLDER – da completare con le aree di copertura reali. Fonte: cliente.]",
   },
   {
-    question: "Qual è il numero minimo di ospiti per un evento?",
-    answer:
-      "[PLACEHOLDER – inserire le informazioni sui minimi di copertura reali]",
+    q: "Qual è il numero minimo di ospiti per richiedere un servizio?",
+    a: "[PLACEHOLDER – da completare con le informazioni sui minimi. Fonte: cliente.]",
   },
   {
-    question: "Come viene strutturata la proposta personalizzata?",
-    answer:
-      "[PLACEHOLDER – inserire dettagli sul processo di proposta commerciale]",
+    q: "Come viene strutturata la proposta personalizzata?",
+    a: "[PLACEHOLDER – descrivere il processo di proposta commerciale. Fonte: cliente.]",
   },
   {
-    question: "Gestite sia il catering sia gli allestimenti?",
-    answer:
-      "[PLACEHOLDER – confermare o descrivere l'offerta integrata food + setup]",
+    q: "Gestite sia il catering sia gli allestimenti dell'evento?",
+    a: "[PLACEHOLDER – confermare e descrivere l'offerta integrata food + setup. Fonte: cliente.]",
   },
   {
-    question: "Con quanto anticipo è necessario prenotare?",
-    answer:
-      "[PLACEHOLDER – inserire i tempi minimi di prenotazione suggeriti]",
+    q: "Con quanto anticipo è necessario prenotare?",
+    a: "[PLACEHOLDER – inserire i tempi minimi di prenotazione consigliati. Fonte: cliente.]",
   },
   {
-    question: "Offrite servizi di mixology e open bar per eventi corporate?",
-    answer:
-      "[PLACEHOLDER – inserire dettagli sul servizio bar catering e mixology]",
+    q: "Offrite servizi di mixology e open bar per eventi corporate?",
+    a: "[PLACEHOLDER – descrivere il servizio bar catering e le opzioni disponibili. Fonte: cliente.]",
+  },
+  {
+    q: "È possibile richiedere un sopralluogo prima dell'evento?",
+    a: "[PLACEHOLDER – confermare la disponibilità al sopralluogo e le modalità. Fonte: cliente.]",
   },
 ];
 
@@ -42,16 +40,14 @@ export default function FAQ() {
     <section
       id="faq"
       aria-labelledby="faq-heading"
-      className="py-20 lg:py-28 bg-ivory"
+      className="py-24 lg:py-32"
       style={{ background: "#F5F3EC" }}
     >
-      <div className="max-w-3xl mx-auto px-6">
+      <div className="max-w-4xl mx-auto px-6 lg:px-10">
+
         {/* Header */}
-        <div className="text-center mb-14">
-          <p className="text-bordeaux text-xs tracking-[0.25em] uppercase font-ui mb-3"
-            style={{ color: "#8C1822" }}>
-            Domande frequenti
-          </p>
+        <div className="text-center mb-16" data-reveal>
+          <p className="overline mb-4">Domande frequenti</p>
           <h2
             id="faq-heading"
             className="font-display"
@@ -59,17 +55,20 @@ export default function FAQ() {
           >
             Domande & risposte
           </h2>
+          <span className="dama-line mx-auto block mt-6" aria-hidden />
         </div>
 
         {/* Accordion */}
-        <dl className="space-y-px">
+        <dl>
           {faqs.map((faq, i) => {
             const isOpen = open === i;
             return (
               <div
                 key={i}
-                className="border-b border-taupe/30"
+                className="border-b"
                 style={{ borderColor: "rgba(175,168,153,0.3)" }}
+                data-reveal
+                data-delay={String(Math.min(i + 1, 6))}
               >
                 <dt>
                   <button
@@ -77,35 +76,53 @@ export default function FAQ() {
                     onClick={() => setOpen(isOpen ? null : i)}
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${i}`}
-                    className="w-full flex items-center justify-between py-5 text-left gap-4 group"
+                    className="w-full flex items-center justify-between py-6 text-left gap-6 group"
                   >
-                    <span className="font-ui font-semibold text-sm lg:text-base text-ink group-hover:text-bordeaux transition-colors"
-                      style={{ color: isOpen ? "#8C1822" : undefined }}>
-                      {faq.question}
+                    <span
+                      className="font-ui font-semibold text-sm lg:text-base leading-snug transition-colors duration-200"
+                      style={{ color: isOpen ? "#8C1822" : "#0a0a0a" }}
+                    >
+                      {faq.q}
                     </span>
                     <span
-                      className="flex-shrink-0 w-6 h-6 border border-taupe/50 flex items-center justify-center text-taupe transition-transform duration-300"
-                      style={{ transform: isOpen ? "rotate(45deg)" : "rotate(0deg)" }}
+                      className="flex-shrink-0 w-7 h-7 border flex items-center justify-center text-taupe transition-all duration-300"
+                      style={{
+                        borderColor: isOpen ? "#8C1822" : "rgba(175,168,153,0.5)",
+                        transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
+                        color: isOpen ? "#8C1822" : "#AFA899",
+                      }}
                       aria-hidden
                     >
-                      +
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <line x1="5" y1="0" x2="5" y2="10" stroke="currentColor" strokeWidth="1.5" />
+                        <line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" strokeWidth="1.5" />
+                      </svg>
                     </span>
                   </button>
                 </dt>
                 <dd
                   id={`faq-answer-${i}`}
-                  role="region"
                   hidden={!isOpen}
-                  className="pb-5"
+                  className="pb-6"
                 >
-                  <p className="text-sm text-ink/60 leading-relaxed font-body italic">
-                    {faq.answer}
+                  <p className="text-sm text-ink/55 leading-relaxed font-body italic">
+                    {faq.a}
                   </p>
                 </dd>
               </div>
             );
           })}
         </dl>
+
+        {/* CTA under FAQ */}
+        <div className="mt-14 text-center" data-reveal>
+          <p className="text-ink/55 text-sm font-body mb-5">
+            Non hai trovato risposta alla tua domanda?
+          </p>
+          <a href="#contatto" className="btn-outline-dark">
+            Contattaci direttamente
+          </a>
+        </div>
       </div>
     </section>
   );
