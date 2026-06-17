@@ -21,9 +21,9 @@ export default function Navbar() {
         right: 0,
         zIndex: 50,
         transition: "background 0.4s ease, border-color 0.4s ease",
-        background: solid ? "rgba(0,0,0,0.9)" : "transparent",
-        backdropFilter: solid ? "blur(10px)" : "none",
-        borderBottom: solid ? "1px solid rgba(245,243,236,0.08)" : "1px solid transparent",
+        background: solid ? "#F5F3EC" : "transparent",
+        backdropFilter: solid ? "none" : "none",
+        borderBottom: solid ? "1px solid rgba(0,0,0,0.08)" : "1px solid transparent",
       }}
     >
       <div
@@ -37,7 +37,7 @@ export default function Navbar() {
       >
         <a href="/" aria-label="Dama24 Banqueting – torna alla home">
           <Image
-            src="/loghi/logo_banqueting bianco.svg"
+            src={solid ? "/loghi/logo_banqueting nero.svg" : "/loghi/logo_banqueting bianco.svg"}
             alt="Dama24 Banqueting"
             width={148}
             height={48}
@@ -60,15 +60,15 @@ export default function Navbar() {
                 key={href}
                 href={href}
                 className="t-label"
-                style={{ color: "rgba(245,243,236,0.6)", transition: "color 0.2s" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#F5F3EC")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(245,243,236,0.6)")}
+                style={{ color: solid ? "rgba(0,0,0,0.55)" : "rgba(245,243,236,0.6)", transition: "color 0.2s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = solid ? "#000000" : "#F5F3EC")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = solid ? "rgba(0,0,0,0.55)" : "rgba(245,243,236,0.6)")}
               >
                 {label}
               </a>
             ))}
           </div>
-          <a href="#contatto" className="btn btn-fill" style={{ padding: "0.625rem 1.375rem" }}>
+          <a href="#contatto" className={solid ? "btn btn-ghost-dark" : "btn btn-fill"} style={{ padding: "0.625rem 1.375rem" }}>
             Preventivo
           </a>
         </nav>
