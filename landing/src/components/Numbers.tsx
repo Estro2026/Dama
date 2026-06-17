@@ -1,62 +1,51 @@
-const stats = [
-  {
-    value: null,
-    label: "Eventi realizzati",
-    note: "dato da inserire",
-  },
-  {
-    value: null,
-    label: "Aziende supportate",
-    note: "dato da inserire",
-  },
-  {
-    value: null,
-    label: "Clienti soddisfatti",
-    note: "dato da inserire",
-  },
-  {
-    value: "24h",
-    label: "Tempo di risposta",
-    note: "verificato",
-  },
+const items = [
+  { value: null,  label: "Eventi realizzati",    note: "dato da inserire" },
+  { value: null,  label: "Aziende supportate",   note: "dato da inserire" },
+  { value: null,  label: "Clienti soddisfatti",  note: "dato da inserire" },
+  { value: "24h", label: "Tempo di risposta",    note: "verificato" },
 ];
 
 export default function Numbers() {
   return (
-    <section
-      id="numeri"
-      aria-labelledby="numeri-heading"
-      style={{ background: "#47090F" }}
-    >
-      <h2 id="numeri-heading" className="sr-only">I nostri numeri</h2>
-
-      <div className="max-w-7xl mx-auto">
-        <dl className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-ivory/10">
-          {stats.map((s, i) => (
-            <div
-              key={s.label}
-              className="flex flex-col items-center justify-center text-center py-14 lg:py-16 px-6"
-              data-reveal
-              data-delay={String(i + 1)}
+    <section aria-labelledby="numbers-title" style={{ background: "#47090F" }}>
+      <h2 id="numbers-title" className="sr-only">I nostri numeri</h2>
+      <dl
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          borderTop: "1px solid rgba(245,243,236,0.08)",
+        }}
+        className="lg:grid-cols-4"
+      >
+        {items.map((item, i) => (
+          <div
+            key={item.label}
+            data-reveal
+            data-delay={`${i * 100}`}
+            style={{
+              padding: "clamp(2.5rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem)",
+              textAlign: "center",
+              borderRight: i < items.length - 1 ? "1px solid rgba(245,243,236,0.08)" : undefined,
+              borderBottom: "1px solid rgba(245,243,236,0.08)",
+            }}
+          >
+            <dd
+              className="t-display"
+              style={{
+                color: item.value ? "#F5F3EC" : "rgba(245,243,236,0.2)",
+                marginBottom: "0.5rem",
+                fontFamily: "var(--font-display)",
+              }}
+              aria-label={item.value ?? `Dato non disponibile – ${item.note}`}
             >
-              <dd
-                className="text-ivory font-display leading-none mb-3"
-                style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3rem, 5vw, 4.5rem)" }}
-                aria-label={s.value ? s.value : `Dato non disponibile – ${s.note}`}
-              >
-                {s.value ? (
-                  s.value
-                ) : (
-                  <span className="text-ivory/20 text-3xl tracking-widest" aria-hidden>—</span>
-                )}
-              </dd>
-              <dt className="text-ivory/50 font-ui text-[0.65rem] tracking-[0.22em] uppercase">
-                {s.label}
-              </dt>
-            </div>
-          ))}
-        </dl>
-      </div>
+              {item.value ?? "—"}
+            </dd>
+            <dt className="t-label" style={{ color: "rgba(245,243,236,0.5)" }}>
+              {item.label}
+            </dt>
+          </div>
+        ))}
+      </dl>
     </section>
   );
 }

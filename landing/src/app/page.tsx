@@ -1,3 +1,4 @@
+import Reveal from "@/components/Reveal";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Numbers from "@/components/Numbers";
@@ -8,14 +9,13 @@ import Gallery from "@/components/Gallery";
 import ConversionSection from "@/components/ConversionSection";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
-import RevealObserver from "@/components/RevealObserver";
 
-export default function HomePage() {
+export default function Page() {
   return (
     <>
-      <RevealObserver />
+      <Reveal />
       <Navbar />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <Hero />
         <Numbers />
         <Services />

@@ -1,20 +1,16 @@
 "use client";
-
-import { useState, FormEvent, useEffect, useRef } from "react";
+import { useState, FormEvent, useRef, useEffect } from "react";
 import Image from "next/image";
 
 const FORMSPREE = "https://formspree.io/f/FORMSPREE_ID";
 
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Play video after mount for better LCP
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
+    videoRef.current?.play().catch(() => {});
   }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -32,7 +28,7 @@ export default function Hero() {
       if (!res.ok) throw new Error();
       window.location.href = window.location.origin + "/Dama/grazie/";
     } catch {
-      setError("Si è verificato un errore. Riprova o contattaci direttamente.");
+      setError("Errore nell'invio. Riprova o contattaci direttamente.");
       setSubmitting(false);
     }
   }
@@ -40,11 +36,20 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      aria-label="Dama24 – Catering aziendale Milano"
-      className="relative min-h-screen flex flex-col lg:flex-row"
+      aria-label="Dama24 Banqueting – Catering aziendale Milano"
+      style={{ display: "flex", minHeight: "100svh" }}
     >
-      {/* ── VIDEO column (left) ── */}
-      <div className="relative w-full lg:w-[58%] min-h-[56vh] lg:min-h-screen overflow-hidden">
+      {/* ── VIDEO (sinistra) ── */}
+      <div
+        style={{
+          position: "relative",
+          flex: "0 0 58%",
+          minHeight: "100svh",
+          overflow: "hidden",
+        }}
+        className="hidden lg:block"
+      >
+        {/* Video */}
         <video
           ref={videoRef}
           muted
@@ -52,161 +57,249 @@ export default function Hero() {
           playsInline
           preload="metadata"
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
         >
           <source src="/immagini/video_banqueting e catering eventi.mp4" type="video/mp4" />
         </video>
 
-        {/* Multi-layer overlay */}
+        {/* Overlay sfumato */}
         <div
-          className="absolute inset-0"
+          aria-hidden="true"
           style={{
-            background:
-              "linear-gradient(105deg, rgba(71,9,15,0.72) 0%, rgba(0,0,0,0.38) 55%, rgba(0,0,0,0.12) 100%)",
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.25) 100%)",
           }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%)",
-          }}
-          aria-hidden
         />
 
-        {/* Content over video */}
-        <div className="relative z-10 h-full flex flex-col justify-between p-8 lg:p-14 pt-24 lg:pt-28">
-          {/* Top: logo */}
-          <div>
-            <Image
-              src="/loghi/logo_banqueting bianco.svg"
-              alt="Dama24 Banqueting"
-              width={180}
-              height={58}
-              priority
-              className="w-36 lg:w-48"
-            />
-          </div>
+        {/* Contenuto sopra video */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 1,
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            padding: "clamp(1.5rem, 3vw, 2.5rem)",
+            paddingTop: "5.5rem",
+          }}
+        >
+          {/* Logo */}
+          <Image
+            src="/loghi/logo_banqueting bianco.svg"
+            alt="Dama24 Banqueting"
+            width={160}
+            height={52}
+            priority
+            style={{ width: "clamp(120px, 13vw, 160px)", height: "auto" }}
+          />
 
-          {/* Bottom: headline */}
-          <div className="max-w-xl pb-6 lg:pb-10">
-            <p className="overline text-ivory/70 mb-5">
+          {/* Headline */}
+          <div style={{ maxWidth: "30rem", paddingBottom: "2rem" }}>
+            <p
+              className="t-label"
+              style={{ color: "rgba(245,243,236,0.6)", marginBottom: "1.25rem" }}
+            >
               Banqueting · Catering Aziendale · Milano
             </p>
-            <h1 className="text-ivory leading-[1.05]">
+            <h1 className="t-display" style={{ color: "#F5F3EC" }}>
               Catering aziendale a Milano per eventi
             </h1>
-            <p className="mt-6 text-ivory/75 text-base lg:text-lg leading-relaxed font-body max-w-md">
+            <p
+              className="t-body"
+              style={{
+                color: "rgba(245,243,236,0.7)",
+                marginTop: "1.25rem",
+                maxWidth: "26rem",
+              }}
+            >
               Coffee break, convention, inaugurazioni, meeting aziendali e
               banqueting su misura.
             </p>
-            <p className="mt-2 text-ivory/60 text-sm font-body">
-              Ricevi una proposta personalizzata entro 24 ore.
-            </p>
-
-            {/* Trust badges */}
-            <div className="flex flex-wrap gap-5 mt-8">
-              {["Preventivo gratuito", "Risposta in 24h", "Su misura"].map((t) => (
-                <span key={t} className="flex items-center gap-2 text-ivory/60 text-xs font-ui">
-                  <span className="w-1 h-1 rounded-full bg-bordeaux flex-shrink-0" aria-hidden />
-                  {t}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
       </div>
 
-      {/* ── FORM column (right) ── */}
+      {/* ── MOBILE: immagine fallback ── */}
       <div
-        className="w-full lg:w-[42%] flex items-center justify-center px-6 py-14 lg:py-0"
-        style={{ background: "#0a0a0a" }}
+        className="lg:hidden"
+        style={{ position: "relative", width: "100%", height: "50svh" }}
       >
-        <div className="w-full max-w-sm dark-form">
-          <p className="overline text-ivory/40 mb-2">Richiedi un preventivo</p>
-          <h2
-            className="text-ivory font-display text-2xl lg:text-[1.9rem] mb-2 leading-tight"
-            style={{ fontFamily: "var(--font-display)" }}
+        <Image
+          src="/immagini/catering.webp"
+          alt="Catering aziendale Dama24 Milano"
+          fill
+          style={{ objectFit: "cover" }}
+          priority
+        />
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7))",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            padding: "1.5rem",
+            paddingTop: "5rem",
+          }}
+        >
+          <Image
+            src="/loghi/logo_banqueting bianco.svg"
+            alt="Dama24 Banqueting"
+            width={130}
+            height={42}
+            style={{ marginBottom: "1rem" }}
+          />
+          <h1
+            className="t-h3"
+            style={{ color: "#F5F3EC" }}
           >
-            Parliamo del tuo prossimo evento
+            Catering aziendale a Milano per eventi
+          </h1>
+        </div>
+      </div>
+
+      {/* ── FORM (destra) ── */}
+      <div
+        style={{
+          flex: "0 0 42%",
+          background: "#000000",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "clamp(2rem, 4vw, 3.5rem)",
+        }}
+        className="w-full lg:w-auto"
+      >
+        <div style={{ width: "100%", maxWidth: "22rem" }}>
+          <p className="t-label" style={{ color: "rgba(245,243,236,0.4)", marginBottom: "0.625rem" }}>
+            Richiedi un preventivo
+          </p>
+          <h2
+            className="t-h3"
+            style={{ color: "#F5F3EC", marginBottom: "0.5rem" }}
+          >
+            Parliamo del tuo evento
           </h2>
-          <span className="dama-line block mb-8" aria-hidden />
+          <span className="dama-rule" style={{ display: "block", marginBottom: "2rem" }} aria-hidden />
 
-          <form onSubmit={handleSubmit} noValidate aria-label="Modulo preventivo" className="space-y-5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div className="field">
-                <label htmlFor="hero-nome" className="block text-[0.65rem] tracking-widest uppercase text-ivory/40 mb-1 font-ui">
-                  Nome <span aria-hidden>*</span>
-                </label>
-                <input id="hero-nome" name="nome" type="text" required autoComplete="given-name"
-                  placeholder="Il tuo nome" className="field-input" />
-              </div>
-              <div className="field">
-                <label htmlFor="hero-azienda" className="block text-[0.65rem] tracking-widest uppercase text-ivory/40 mb-1 font-ui">
-                  Azienda <span aria-hidden>*</span>
-                </label>
-                <input id="hero-azienda" name="azienda" type="text" required autoComplete="organization"
-                  placeholder="Nome azienda" className="field-input" />
-              </div>
+          <form
+            onSubmit={handleSubmit}
+            noValidate
+            aria-label="Modulo richiesta preventivo"
+            style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
+          >
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+              <FormField id="h-nome" name="nome" label="Nome *" placeholder="Il tuo nome" type="text" autoComplete="given-name" />
+              <FormField id="h-azienda" name="azienda" label="Azienda *" placeholder="Nome azienda" type="text" autoComplete="organization" />
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div className="field">
-                <label htmlFor="hero-email" className="block text-[0.65rem] tracking-widest uppercase text-ivory/40 mb-1 font-ui">
-                  Email <span aria-hidden>*</span>
-                </label>
-                <input id="hero-email" name="email" type="email" required autoComplete="email"
-                  placeholder="email@azienda.it" className="field-input" />
-              </div>
-              <div className="field">
-                <label htmlFor="hero-telefono" className="block text-[0.65rem] tracking-widest uppercase text-ivory/40 mb-1 font-ui">
-                  Telefono <span aria-hidden>*</span>
-                </label>
-                <input id="hero-telefono" name="telefono" type="tel" required autoComplete="tel"
-                  placeholder="+39 000 000 0000" className="field-input" />
-              </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+              <FormField id="h-email" name="email" label="Email *" placeholder="name@azienda.it" type="email" autoComplete="email" />
+              <FormField id="h-tel" name="telefono" label="Telefono *" placeholder="+39 000 000 0000" type="tel" autoComplete="tel" />
             </div>
-
-            <div className="field">
-              <label htmlFor="hero-tipo" className="block text-[0.65rem] tracking-widest uppercase text-ivory/40 mb-1 font-ui">
-                Tipo di evento
-              </label>
-              <select id="hero-tipo" name="tipoEvento" className="field-input">
-                <option value="">Seleziona tipologia</option>
+            <div className="form-field">
+              <label htmlFor="h-tipo" className="form-label">Tipo di evento</label>
+              <select id="h-tipo" name="tipoEvento" className="form-input">
+                <option value="">Seleziona…</option>
                 <option value="convention">Convention / Congresso</option>
                 <option value="fiera">Fiera</option>
-                <option value="inaugurazione">Inaugurazione aziendale</option>
+                <option value="inaugurazione">Inaugurazione</option>
                 <option value="meeting">Meeting aziendale</option>
                 <option value="coffee-break">Coffee Break</option>
                 <option value="altro">Altro</option>
               </select>
             </div>
-
-            <div className="field">
-              <label htmlFor="hero-msg" className="block text-[0.65rem] tracking-widest uppercase text-ivory/40 mb-1 font-ui">
-                Messaggio
-              </label>
-              <textarea id="hero-msg" name="messaggio" rows={2}
-                placeholder="Raccontaci il tuo evento…" className="field-input resize-none" />
+            <div className="form-field">
+              <label htmlFor="h-msg" className="form-label">Messaggio</label>
+              <textarea
+                id="h-msg"
+                name="messaggio"
+                rows={2}
+                placeholder="Raccontaci il tuo evento…"
+                className="form-input"
+                style={{ resize: "none" }}
+              />
             </div>
 
-            <div className="flex items-start gap-3 pt-1">
-              <input id="hero-privacy" name="privacy" type="checkbox" required
-                className="mt-0.5 w-3.5 h-3.5 flex-shrink-0 accent-bordeaux" />
-              <label htmlFor="hero-privacy" className="text-[0.7rem] text-ivory/35 leading-relaxed font-body">
+            <div style={{ display: "flex", gap: "0.625rem", alignItems: "flex-start" }}>
+              <input
+                id="h-privacy"
+                name="privacy"
+                type="checkbox"
+                required
+                style={{ marginTop: "0.1rem", flexShrink: 0, accentColor: "#8C1822", width: "0.875rem", height: "0.875rem" }}
+              />
+              <label htmlFor="h-privacy" className="t-small" style={{ color: "rgba(245,243,236,0.35)" }}>
                 Acconsento al trattamento dei dati personali (GDPR – Reg. UE 679/2016).{" "}
-                <a href="/privacy-policy" className="underline text-ivory/55">Privacy Policy</a>
+                <a href="/privacy-policy" style={{ textDecoration: "underline", color: "rgba(245,243,236,0.55)" }}>
+                  Privacy Policy
+                </a>
               </label>
             </div>
 
-            {error && <p role="alert" className="text-xs text-red-400">{error}</p>}
+            {error && <p role="alert" className="t-small" style={{ color: "#f87171" }}>{error}</p>}
 
-            <button type="submit" disabled={submitting} className="btn-primary w-full mt-2">
+            <button type="submit" disabled={submitting} className="btn btn-fill" style={{ width: "100%", marginTop: "0.25rem" }}>
               {submitting ? "Invio in corso…" : "Ricevi una proposta personalizzata"}
             </button>
+
+            {/* Trust strip */}
+            <ul
+              aria-label="Garanzie"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "0.375rem 1rem",
+                listStyle: "none",
+                paddingTop: "0.25rem",
+              }}
+            >
+              {["Preventivo gratuito", "Risposta in 24 ore", "Progetto su misura", "Un unico referente"].map((t) => (
+                <li key={t} className="t-small" style={{ color: "rgba(245,243,236,0.35)", display: "flex", alignItems: "center", gap: "0.375rem" }}>
+                  <span style={{ width: "0.25rem", height: "0.25rem", borderRadius: "50%", background: "#8C1822", flexShrink: 0 }} aria-hidden />
+                  {t}
+                </li>
+              ))}
+            </ul>
           </form>
         </div>
       </div>
     </section>
+  );
+}
+
+function FormField({
+  id, name, label, placeholder, type, autoComplete,
+}: {
+  id: string; name: string; label: string; placeholder: string; type: string; autoComplete?: string;
+}) {
+  return (
+    <div className="form-field">
+      <label htmlFor={id} className="form-label">{label}</label>
+      <input
+        id={id}
+        name={name}
+        type={type}
+        required={label.endsWith("*")}
+        autoComplete={autoComplete}
+        placeholder={placeholder}
+        className="form-input"
+      />
+    </div>
   );
 }
